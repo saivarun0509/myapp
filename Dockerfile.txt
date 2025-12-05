@@ -1,0 +1,21 @@
+# Base Image Amazon Linux
+FROM amazonlinux:latest
+
+# Install Python3 & pip
+RUN yum update -y && \
+    yum install -y python3 python3-pip
+
+# Set working directory
+WORKDIR /app
+
+# Copy application files
+COPY . .
+
+# Install Flask dependency
+RUN pip3 install flask
+
+# Expose Application Port
+EXPOSE 5000
+
+# Run the application
+CMD ["python3", "app.py"]
